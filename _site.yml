@@ -1,0 +1,16 @@
+name: lingtypology
+navbar:
+  left:
+    - href: index.html
+      text: главная
+    - text: тексты
+      menu:
+        - href: how_samuel.html
+          text: How Samuel bin Adiya, the Jewish hero, kept his word
+output_dir: docs
+output:
+  html_document:
+    theme: lumen
+    highlight: tango
+    self_contained: yes
+

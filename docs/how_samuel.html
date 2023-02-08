@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>how_samuel.knit</title>
+
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<link href="site_libs/tippyjs-3.2.0/themes/google.css" rel="stylesheet" />
+<link href="site_libs/tippyjs-3.2.0/themes/light-border.css" rel="stylesheet" />
+<link href="site_libs/tippyjs-3.2.0/themes/light.css" rel="stylesheet" />
+<link href="site_libs/tippyjs-3.2.0/themes/translucent.css" rel="stylesheet" />
+<script src="site_libs/tippyjs-3.2.0/tippy.all.min.js"></script>
+<script src="site_libs/tippy-binding-0.1.0/tippy.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">главная</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    тексты
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="how_samuel.html">How Samuel bin Adiya, the Jewish hero, kept his word</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="how-samuel-bin-adiya-the-jewish-hero-kept-his-word"
+class="section level2">
+<h2>How Samuel bin Adiya, the Jewish hero, kept his word</h2>
+<div dir="rtl">
+<p><span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-7dbdc6a68af870223883" width="960"></span> <script type="application/json" data-for="htmlwidget-7dbdc6a68af870223883">{"x":{"opts":{"content":"ـهَا<br>PRON<br>Gen=Fem|Number=Sing|Person=3|PronType=PersSuff"},"text":"أَدْفَعُهَا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-41f26393b0644a6ab301" width="960"></span> <script type="application/json" data-for="htmlwidget-41f26393b0644a6ab301">{"x":{"opts":{"content":"ـِي<br>PRON<br>Gen=Masc|Number=Sing|Person=1|PronType=PersSuff"},"text":"أَمَانَتِي"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-4c391d8a1af33f14a00c" width="960"></span> <script type="application/json" data-for="htmlwidget-4c391d8a1af33f14a00c">{"x":{"opts":{"content":"ـهَا<br>PRON<br>Gen=Fem|Number=Sing|Person=3|PronType=PersSuff"},"text":"أَوْدَعَهَا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-10b7c1a8e1b73f27468e" width="960"></span> <script type="application/json" data-for="htmlwidget-10b7c1a8e1b73f27468e">{"x":{"opts":{"content":"هُمَا<br>PRON<br>Gen=Masc|Number=Sing|Person=2|PronType=PersInd"},"text":"أَيَّهُمَا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-3cd885208496ed23e3da" width="960"></span> <script type="application/json" data-for="htmlwidget-3cd885208496ed23e3da">{"x":{"opts":{"content":"ـكَ<br>PRON<br>Gen=Masc|Number=Sing|Person=2|PronType=PersSuff"},"text":"إلَيْكَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-2c03e55d35477c422ecf" width="960"></span> <script type="application/json" data-for="htmlwidget-2c03e55d35477c422ecf">{"x":{"opts":{"content":"ـهُ<br>PRON<br>Gen=Masc|Number=Sing|Person=3|PronType=PersSuff<br>ـهُ<br>PRON<br>Gen=Masc&Fem|Number=Sing|Person=3|PronType=PersSuff"},"text":"إِلَيْهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-c789cdf6f772dd6cd325" width="960"></span> <script type="application/json" data-for="htmlwidget-c789cdf6f772dd6cd325">{"x":{"opts":{"content":"ـهُمْ<br>PRON<br>Gen=Masc&Fem|Number=Sing|Person=3|PronType=PersSuff"},"text":"إِلَيْهِمُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-4f1d031a46d449c44fdd" width="960"></span> <script type="application/json" data-for="htmlwidget-4f1d031a46d449c44fdd">{"x":{"opts":{"content":"ـهُ<br>PRON<br>Gen=Masc|Number=Sing|Person=3|PronType=PersSuff"},"text":"إِيَّاهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-739470ae34865e73d0bc" width="960"></span> <script type="application/json" data-for="htmlwidget-739470ae34865e73d0bc">{"x":{"opts":{"content":"إِنَّ<br>PART<br><br>ـِي<br>PRON<br>Gen=Masc|Number=Sing|Person=1|PronType=PersSuff"},"text":"بِإِنِّي"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-1a11e3f4795ea91ed04d" width="960"></span> <script type="application/json" data-for="htmlwidget-1a11e3f4795ea91ed04d">{"x":{"opts":{"content":"وَفَاءٌ<br>NOUN<br>Case=ِGen|Definite=Def|Gender=Masc|Number=Sing"},"text":"بِالْوَفَآءِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-19e8364edb434fbc32ce" width="960"></span> <script type="application/json" data-for="htmlwidget-19e8364edb434fbc32ce">{"x":{"opts":{"content":"ذِمَّةٌ (ذِمَمٌ ذِمَامٌ)<br>NOUN<br>Case=Gen|Definite=Cons|Gender=Fem|Number=Sing<br>ـِي<br>PRON<br>Gen=Masc|Number=Sing|Person=1|PronType=PersSuff"},"text":"بِذِمَّتِي"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-4c6df63b1909ba6ff52f" width="960"></span> <script type="application/json" data-for="htmlwidget-4c6df63b1909ba6ff52f">{"x":{"opts":{"content":"عَسْكَرٌ (عَسَاكِرُ)<br>NOUN<br>Case=ِGen|Definite=Cons|Gender=Masc|Number=Sing<br>ـهُ<br>PRON<br>Gen=Masc|Number=Sing|Person=3|PronType=PersSuff"},"text":"بِعَسْكَرِهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-a2f4f4429dd9329e37e9" width="960"></span> <script type="application/json" data-for="htmlwidget-a2f4f4429dd9329e37e9">{"x":{"opts":{"content":"ـهُ<br>PRON<br>Gen=Masc|Number=Sing|Person=3|PronType=PersSuff<br>ـهُ<br>PRON<br>Gen=Masc|Number=Sing|Person=3|PronType=PersSuff<br>ـهُ<br>PRON<br>Gen=Masc|Number=Sing|Person=3|PronType=PersSuff"},"text":"بِهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-7fa3e51fcfcaeca9bf1c" width="960"></span> <script type="application/json" data-for="htmlwidget-7fa3e51fcfcaeca9bf1c">{"x":{"opts":{"content":"ـهُ<br>PRON<br>Gen=Masc|Number=Sing|Person=3|PronType=PersSuff"},"text":"حِصْنِهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-cab3486de34b8cdd084b" width="960"></span> <script type="application/json" data-for="htmlwidget-cab3486de34b8cdd084b">{"x":{"opts":{"content":"ـهُ<br>PRON<br>Gen=Masc|Number=Sing|Person=3|PronType=PersSuff"},"text":"ذَبَحْتُهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-dcb1ef11303dbeb92137" width="960"></span> <script type="application/json" data-for="htmlwidget-dcb1ef11303dbeb92137">{"x":{"opts":{"content":"ـِي<br>PRON<br>Gen=Masc|Number=Sing|Person=1|PronType=PersSuff"},"text":"عَلَيَّ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-3f8ec353890c000978b7" width="960"></span> <script type="application/json" data-for="htmlwidget-3f8ec353890c000978b7">{"x":{"opts":{"content":"ـهُ<br>PRON<br>Gen=Masc|Number=Sing|Person=3|PronType=PersSuff"},"text":"عِنْدَهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-f08350d3ff363564480e" width="960"></span> <script type="application/json" data-for="htmlwidget-f08350d3ff363564480e">{"x":{"opts":{"content":"ـهُ<br>PRON<br>Gen=Masc&Fem|Number=Sing|Person=3|PronType=PersSuff"},"text":"غَيْرِهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-b1a732ec07f4332895ce" width="960"></span> <script type="application/json" data-for="htmlwidget-b1a732ec07f4332895ce">{"x":{"opts":{"content":"لَمَّا<br>CCONJ<br>"},"text":"فلَمّا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-c2cac7c5c30883f76170" width="960"></span> <script type="application/json" data-for="htmlwidget-c2cac7c5c30883f76170">{"x":{"opts":{"content":"أَبَى يَأْبِي (إِبَاءَةٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"فَأَبَى"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-9e058f3679a6600515a9" width="960"></span> <script type="application/json" data-for="htmlwidget-9e058f3679a6600515a9">{"x":{"opts":{"content":"إِنَّ<br>PART<br><br>ـِي<br>PRON<br>Gen=Masc&Fem|Number=Sing|Person=1|PronType=PersSuff"},"text":"فَإِنِّي"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-1713a493bc58dd36b07d" width="960"></span> <script type="application/json" data-for="htmlwidget-1713a493bc58dd36b07d">{"x":{"opts":{"content":"اخْتَارَ<br>VERB<br>Stem=VIII|ModAsp=Imp|Gender=Masc|Number=Sing|Person=2|Voice=Act"},"text":"فَاخْتَرْ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-9e544a691840a9cfb0cd" width="960"></span> <script type="application/json" data-for="htmlwidget-9e544a691840a9cfb0cd">{"x":{"opts":{"content":"نَظَرَ يَنْظُرُ (نَظَرٌ)<br>VERB<br>Stem=I|ModAsp=Imp|Gender=Masc|Number=Sing|Person=2|Voice=Act"},"text":"فَانْظُرْ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-def0b396b9a293d58740" width="960"></span> <script type="application/json" data-for="htmlwidget-def0b396b9a293d58740">{"x":{"opts":{"content":"حَاصَرَ<br>VERB<br>Stem=III|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act<br>ـهُ<br>PRON<br>Gen=Masc|Number=Sing|Person=3|PronType=PersSuff"},"text":"فَحَاصَرَهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-5d543505c2b0949b8084" width="960"></span> <script type="application/json" data-for="htmlwidget-5d543505c2b0949b8084">{"x":{"opts":{"content":"دَخَلَ يَدْخُلُ (دُخُولٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"فَدَخَلَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-50a1812fb8382315da11" width="960"></span> <script type="application/json" data-for="htmlwidget-50a1812fb8382315da11">{"x":{"opts":{"content":"ذَبَحَ يَذْبَحُ (ذَبْحٌ)<br>VERB<br>Stem=I|ModAsp=Impf|Gender=Masc&Fem|Number=Sing|Person=1|Voice=Act<br>ـهُ<br>PRON<br>Gen=Masc&Fem|Number=Sing|Person=3|PronType=PersSuff"},"text":"فَذَبَحَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-ef868f08f9960fb305e7" width="960"></span> <script type="application/json" data-for="htmlwidget-ef868f08f9960fb305e7">{"x":{"opts":{"content":"صَارَ يَصَارُ (مَصِيرٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"فَصَارَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-108cceffe4668a203b47" width="960"></span> <script type="application/json" data-for="htmlwidget-108cceffe4668a203b47">{"x":{"opts":{"content":"ظَفِرَ يَظْفَرُ (ظَفَرٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"فَظَفِرَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-aab9e38c033c8707a5ff" width="960"></span> <script type="application/json" data-for="htmlwidget-aab9e38c033c8707a5ff">{"x":{"opts":{"content":"عَاوَدَ<br>VERB<br>Stem=III|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act<br>ـهُ<br>PRON<br>Gen=Masc|Number=Sing|Person=3|PronType=PersSuff"},"text":"فَعَاوَدَهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-3ca556e44b629b86f01f" width="960"></span> <script type="application/json" data-for="htmlwidget-3ca556e44b629b86f01f">{"x":{"opts":{"content":"قَالَ يَقُولُ (قَوْلٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act<br>قَالَ يَقُولُ (قَوْلٌ)<br>VERB<br>Stem=I|ModAsp=Imp|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"فَقَالَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-ee126eab29d968e09c32" width="960"></span> <script type="application/json" data-for="htmlwidget-ee126eab29d968e09c32">{"x":{"opts":{"content":"لَمَّا<br>CCONJ<br>"},"text":"فَلَمَّا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-499627f5a5e334c39f91" width="960"></span> <script type="application/json" data-for="htmlwidget-499627f5a5e334c39f91">{"x":{"opts":{"content":"لَمَّا<br>CCONJ<br>"},"text":"فَلَمَّا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-cf22fc1edf5d28bb8faf" width="960"></span> <script type="application/json" data-for="htmlwidget-cf22fc1edf5d28bb8faf">{"x":{"opts":{"content":"ـهُ<br>PRON<br>Gen=Masc|Number=Sing|Person=3|PronType=PersSuff"},"text":"قَصَدَهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-269beddfa136eec1de84" width="960"></span> <script type="application/json" data-for="htmlwidget-269beddfa136eec1de84">{"x":{"opts":{"content":"ـهُ<br>PRON<br>Gen=Masc&Fem|Number=Sing|Person=3|PronType=PersSuff"},"text":"لَهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-204efd88c310f40bd067" width="960"></span> <script type="application/json" data-for="htmlwidget-204efd88c310f40bd067">{"x":{"opts":{"content":"أَرْضَى<br>NOUN<br>Case=Gen|Definite=Cons|Gender=Masc|Number=Sing"},"text":"لِإِرْضَاءِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-54255c10a14316507174" width="960"></span> <script type="application/json" data-for="htmlwidget-54255c10a14316507174">{"x":{"opts":{"content":"دِرْعٌ (دُرُوعٌ)<br>NOUN<br>Case=Gen|Definite=Def|Gender=Masc&Fem|Number=Plur"},"text":"لِلدُّرُوعِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-73e0bfee648e4f75e157" width="960"></span> <script type="application/json" data-for="htmlwidget-73e0bfee648e4f75e157">{"x":{"opts":{"content":"اللهُ<br>NOUN<br>Case=Gen|Definite=Def|Gender=Masc|Number=Sing"},"text":"لِلّٰه"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-64167b5ee6e48bedd54a" width="960"></span> <script type="application/json" data-for="htmlwidget-64167b5ee6e48bedd54a">{"x":{"opts":{"content":"اسْتَحَقَّ<br>PTCP<br>Stem=X|Case=Gen|Definite=Cons|Gender=Masc|Number=Sing|Voice=Act<br>ـهَا<br>PRON<br>Gen=Fem|Number=Sing|Person=3|PronType=PersSuff"},"text":"لِمُسْتَحِقِّهَا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-bff5482e55ce3c728690" width="960"></span> <script type="application/json" data-for="htmlwidget-bff5482e55ce3c728690">{"x":{"opts":{"content":"قَتَلَ يَقْتُلُ (قَتْلٌ)<br>VERB<br>Stem=I|ModAsp=Subj|Gender=Masc|Number=Sing|Person=3|Voice=Act<br>ـهُ<br>PRON<br>Gen=Masc|Number=Sing|Person=3|PronType=PersSuff"},"text":"لِيَقْتُلَهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-f8357178f7743cc2226e" width="960"></span> <script type="application/json" data-for="htmlwidget-f8357178f7743cc2226e">{"x":{"opts":{"content":"ــــهُ<br>PRON<br>Gender=Masc|Number=Sing|Person=3|PronType=PersSuff"},"text":"مَوْتِهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-229cae397cbf156a842f" width="960"></span> <script type="application/json" data-for="htmlwidget-229cae397cbf156a842f">{"x":{"opts":{"content":"ـهَا<br>PRON<br>Gen=Fem|Number=Sing|Person=3|PronType=PersSuff"},"text":"مِنْهَا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-58c8170bc7a904777462" width="960"></span> <script type="application/json" data-for="htmlwidget-58c8170bc7a904777462">{"x":{"opts":{"content":"سِلَاحٌ (أَسْلِحَةٌ)<br>NOUN<br>Case=ِAcc|Definite=Def|Gender=Masc&Fem|Number=Sing"},"text":"والسِّلَاحَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-0164086f99c0ad22d00e" width="960"></span> <script type="application/json" data-for="htmlwidget-0164086f99c0ad22d00e">{"x":{"opts":{"content":"سِلاَحٌ (أَسْلِحَةٌ)<br>NOUN<br>Case=Gen|Definite=Def|Gender=Masc&Fem|Number=Sing"},"text":"والسِّلَاحِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-8b100fafd0ea2cc5fb1c" width="960"></span> <script type="application/json" data-for="htmlwidget-8b100fafd0ea2cc5fb1c">{"x":{"opts":{"content":"امْتَنَعَ<br>VERB<br>Stem=VIII|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"وامْتَنَعَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-d994f8513ec8dce8b0ec" width="960"></span> <script type="application/json" data-for="htmlwidget-d994f8513ec8dce8b0ec">{"x":{"opts":{"content":"أَبَى يَأْبِي (إِبَاءَةٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"وَأَبَى"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-94852c5a75e3533699a7" width="960"></span> <script type="application/json" data-for="htmlwidget-94852c5a75e3533699a7">{"x":{"opts":{"content":"أَرَى يَرَى (رَأْيٌ رُؤْيَةٌ)<br>VERB<br>Stem=IV|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act<br>ـهُ<br>PRON<br>Gen=Masc|Number=Sing|Person=3|PronType=PersSuff"},"text":"وَأَرَاهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-b3768b5ae3438efd2d3c" width="960"></span> <script type="application/json" data-for="htmlwidget-b3768b5ae3438efd2d3c">{"x":{"opts":{"content":"أَنْتَ<br>PRON<br>Gen=Masc|Number=Sing|Person=2|PronType=PersInd"},"text":"وَأَنْتَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-2969afeec54a81fcd780" width="960"></span> <script type="application/json" data-for="htmlwidget-2969afeec54a81fcd780">{"x":{"opts":{"content":"إِلَّا<br>PART<br>"},"text":"وَإِلَّا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-29561f4f55ee5f11cae3" width="960"></span> <script type="application/json" data-for="htmlwidget-29561f4f55ee5f11cae3">{"x":{"opts":{"content":"إِنْ<br>CCONJ<br>"},"text":"وَإِنْ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-26fe6574c27e65fee803" width="960"></span> <script type="application/json" data-for="htmlwidget-26fe6574c27e65fee803">{"x":{"opts":{"content":"اسْتَأَسَرَ<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act<br>ـهُ<br>PRON<br>Gen=Masc|Number=Sing|Person=3|PronType=PersSuff"},"text":"وَاسْتَأْسَرَهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-db0da0baa8eb55138f26" width="960"></span> <script type="application/json" data-for="htmlwidget-db0da0baa8eb55138f26">{"x":{"opts":{"content":"بَقِيَ يَبْقَى (بَقَاءٌ)<br>NOUN<br>Case=ِGen|Definite=Cons|Gender=Masc|Number=Sing<br>ـهُ<br>PRON<br>Gen=Masc&Fem|Number=Sing|Person=3|PronType=PersSuff"},"text":"وَبَقَآئِهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-daa1f08b6d166d6c1bc8" width="960"></span> <script type="application/json" data-for="htmlwidget-daa1f08b6d166d6c1bc8">{"x":{"opts":{"content":"حَضَرَ يَحضُرُ (حُضُورٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Plur|Person=3|Voice=Act"},"text":"وَحَضَرُوا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-df1e172bcc7027f2bde0" width="960"></span> <script type="application/json" data-for="htmlwidget-df1e172bcc7027f2bde0">{"x":{"opts":{"content":"رَأَى يَرَى (رَأْيٌ رُؤْيَةٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"وَرَأى"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-341e2d71e8db066adfc2" width="960"></span> <script type="application/json" data-for="htmlwidget-341e2d71e8db066adfc2">{"x":{"opts":{"content":"رَعَى يَرْعَى (رَعْيٌ رِعَايَةٌ)<br>NOUN<br>Case=ِGen|Definite=Def|Gender=Fem|Number=Sing"},"text":"وَرِعَايَةَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-20b0107b1b532525dabf" width="960"></span> <script type="application/json" data-for="htmlwidget-20b0107b1b532525dabf">{"x":{"opts":{"content":"سِلَاحٌ (أَسْلِحَةٌ)<br>NOUN<br>Case=Acc|Definite=Ind|Gender=Masc&Fem|Number=Sing"},"text":"وَسِلَاحًا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-2d6666eb0e2c284aa799" width="960"></span> <script type="application/json" data-for="htmlwidget-2d6666eb0e2c284aa799">{"x":{"opts":{"content":"صَبَرَ يَصْبِرُ (صَبْرٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"وَصَبَرَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-25bbdf4ab6dc547c8343" width="960"></span> <script type="application/json" data-for="htmlwidget-25bbdf4ab6dc547c8343">{"x":{"opts":{"content":"عَهْدٌ (عُهُودٌ)<br>NOUN<br>Case=ِAcc|Definite=Cons|Gender=Masc|Number=Sing<br>ـِي<br>PRON<br>Gen=Masc&Fem|Number=Sing|Person=1|PronType=PersSuff"},"text":"وَعَهْدِي"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-c8bba68707f34c207e70" width="960"></span> <script type="application/json" data-for="htmlwidget-c8bba68707f34c207e70">{"x":{"opts":{"content":"ـِي<br>PRON<br>Gen=Masc&Fem|Number=Sing|Person=1|PronType=PersSuff"},"text":"وَفَآئِي"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-b61dfeedf57886af3f84" width="960"></span> <script type="application/json" data-for="htmlwidget-b61dfeedf57886af3f84">{"x":{"opts":{"content":"ـهُ<br>PRON<br>Gen=Masc&Fem|Number=Sing|Person=3|PronType=PersSuff"},"text":"وَفَائِهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-5087127e63595f6380e6" width="960"></span> <script type="application/json" data-for="htmlwidget-5087127e63595f6380e6">{"x":{"opts":{"content":"قَالَ يَقُولُ (قَوْلٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act<br>وَ<br>CCONJ<br>"},"text":"وَقَالَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-14070de33486b1d1db39" width="960"></span> <script type="application/json" data-for="htmlwidget-14070de33486b1d1db39">{"x":{"opts":{"content":"كَانَ يَكُونُ (كَوْنٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"وَكَانَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-1268f9946dccd18ef42e" width="960"></span> <script type="application/json" data-for="htmlwidget-1268f9946dccd18ef42e">{"x":{"opts":{"content":"لَا<br>PART<br><br>لَا<br>PART<br>"},"text":"وَلَا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-f8059f9e8ce9c6b1fa59" width="960"></span> <script type="application/json" data-for="htmlwidget-f8059f9e8ce9c6b1fa59">{"x":{"opts":{"content":"ـكَ<br>PRON<br>Gen=Masc|Number=Sing|Person=2|PronType=PersSuff<br>ـكَ<br>PRON<br>Gen=Masc|Number=Sing|Person=2|PronType=PersSuff"},"text":"وَلَدَكَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-4510268165d76442dae8" width="960"></span> <script type="application/json" data-for="htmlwidget-4510268165d76442dae8">{"x":{"opts":{"content":"ـهُ<br>PRON<br>Gen=Masc&Fem|Number=Sing|Person=3|PronType=PersSuff<br>ـهُ<br>PRON<br>Gen=Masc&Fem|Number=Sing|Person=3|PronType=PersSuff"},"text":"وَلَدِهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-97360f81b6222a33e3e8" width="960"></span> <script type="application/json" data-for="htmlwidget-97360f81b6222a33e3e8">{"x":{"opts":{"content":"لَمْ<br>PART<br>"},"text":"وَلَمْ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-d3b80e6ce269858b6824" width="960"></span> <script type="application/json" data-for="htmlwidget-d3b80e6ce269858b6824">{"x":{"opts":{"content":"هُوَ<br>PRON<br>Gen=Masc|Number=Sing|Person=3|PronType=PersInd"},"text":"وَهُوَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-ff4774ab6cf1d7fec4e4" width="960"></span> <script type="application/json" data-for="htmlwidget-ff4774ab6cf1d7fec4e4">{"x":{"opts":{"content":"هُوَ<br>PRON<br>Gen=Masc|Number=Sing|Person=3|PronType=PersInd"},"text":"وَهْوَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-fd16a8151b80d06d0a0c" width="960"></span> <script type="application/json" data-for="htmlwidget-fd16a8151b80d06d0a0c">{"x":{"opts":{"content":"قَالَ يَقُولُ (قَوْلٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Pass"},"text":"قِيلَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-21c4b73b3425b3701f08" width="960"></span> <script type="application/json" data-for="htmlwidget-21c4b73b3425b3701f08">{"x":{"opts":{"content":"عِندَ<br>ADP<br>"},"text":"عِنْدَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-2424c2ba7ee9e1711d99" width="960"></span> <script type="application/json" data-for="htmlwidget-2424c2ba7ee9e1711d99">{"x":{"opts":{"content":"طَافَ يَطُوفُ (طَوْفٌ طَوَافٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"طَافَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-906405f91cc1088543b8" width="960"></span> <script type="application/json" data-for="htmlwidget-906405f91cc1088543b8">{"x":{"opts":{"content":"بِـ<br>ADP<br>"},"text":"بِهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-b71a80407c29ae12b750" width="960"></span> <script type="application/json" data-for="htmlwidget-b71a80407c29ae12b750">{"x":{"opts":{"content":"حَوْلَ<br>ADP<br>"},"text":"حَوْلَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-9a45a6e8a30cd2373762" width="960"></span> <script type="application/json" data-for="htmlwidget-9a45a6e8a30cd2373762">{"x":{"opts":{"content":"حِصْنٌ (حُصُونٌ)<br>NOUN<br>Case=ِGen|Definite=Def|Gender=Masc|Number=Sing"},"text":"الْحِصْنِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-fd121e7fdaa521b862c1" width="960"></span> <script type="application/json" data-for="htmlwidget-fd121e7fdaa521b862c1">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"وَهُوَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-1253dbd18562d54d90d0" width="960"></span> <script type="application/json" data-for="htmlwidget-1253dbd18562d54d90d0">{"x":{"opts":{"content":"نَادَى<br>VERB<br>Stem=I|ModAsp=Impf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"يُنَادِي"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-5e68d2a4c5dcd44db846" width="960"></span> <script type="application/json" data-for="htmlwidget-5e68d2a4c5dcd44db846">{"x":{"opts":{"content":"السَّمَوْءَلُ<br>NOUN<br>Case=ِAcc|Definite=Def|Gender=Masc|Number=Sing"},"text":"السَّمَوْءَلَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-2dde7a2dcb7e67d69b28" width="960"></span> <script type="application/json" data-for="htmlwidget-2dde7a2dcb7e67d69b28">{"x":{"opts":{"content":"بِـ<br>ADP<br>"},"text":"بِإِنِّي"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-75dbd36c30aa9c9a1815" width="960"></span> <script type="application/json" data-for="htmlwidget-75dbd36c30aa9c9a1815">{"x":{"opts":{"content":"قَدْ<br>PART<br>"},"text":"قَدْ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-c5d2962f388f93365c47" width="960"></span> <script type="application/json" data-for="htmlwidget-c5d2962f388f93365c47">{"x":{"opts":{"content":"أَسَرَ يَأْسِرُ (أَسْرٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc&Fem|Number=Sing|Person=1|Voice=Act"},"text":"أَسَرْتُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-984938d7f96fe6233b03" width="960"></span> <script type="application/json" data-for="htmlwidget-984938d7f96fe6233b03">{"x":{"opts":{"content":"السَّمَوْءَلُ<br>NOUN<br>Case=Gen|Definite=Def|Gender=Masc|Number=Sing"},"text":"السَّمَوْءَلِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-9e48b7713b05b5faf191" width="960"></span> <script type="application/json" data-for="htmlwidget-9e48b7713b05b5faf191">{"x":{"opts":{"content":"ولدٌ (أَوْلَادٌ)<br>NOUN<br>Case=ِAcc|Definite=Cons|Gender=Masc|Number=Sing"},"text":"وَلَدَكَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-950ce4b5e07fbd1dd44e" width="960"></span> <script type="application/json" data-for="htmlwidget-950ce4b5e07fbd1dd44e">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"وَإِنْ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-ecb3644fd85582998c86" width="960"></span> <script type="application/json" data-for="htmlwidget-ecb3644fd85582998c86">{"x":{"opts":{"content":"لَمْ<br>PART<br>"},"text":"لَمْ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-bfe5099e5afb1127ec4a" width="960"></span> <script type="application/json" data-for="htmlwidget-bfe5099e5afb1127ec4a">{"x":{"opts":{"content":"صَدَّقَ<br>VERB<br>Stem=II|ModAsp=Juss|Gender=Masc|Number=Sing|Person=2|Voice=Act"},"text":"تُصَدِّقْ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-7338f066abcf1b378e8d" width="960"></span> <script type="application/json" data-for="htmlwidget-7338f066abcf1b378e8d">{"x":{"opts":{"content":"فَـ<br>CCONJ<br>"},"text":"فَانْظُرْ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-d590c44f1d45c4d9d84d" width="960"></span> <script type="application/json" data-for="htmlwidget-d590c44f1d45c4d9d84d">{"x":{"opts":{"content":"إِلَى<br>ADP<br>"},"text":"إِلَيْهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-274c80fd6d2d77fc2fa3" width="960"></span> <script type="application/json" data-for="htmlwidget-274c80fd6d2d77fc2fa3">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"وَأَرَاهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-a0393cc5a65942c7a0fc" width="960"></span> <script type="application/json" data-for="htmlwidget-a0393cc5a65942c7a0fc">{"x":{"opts":{"content":"إِيَّا<br>PART<br>"},"text":"إِيَّاهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-e143fd4f64f328af652a" width="960"></span> <script type="application/json" data-for="htmlwidget-e143fd4f64f328af652a">{"x":{"opts":{"content":"قَالَ يَقُولُ (قَوْلٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"وَقَالَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-2e776fcc2ebf08a7ae79" width="960"></span> <script type="application/json" data-for="htmlwidget-2e776fcc2ebf08a7ae79">{"x":{"opts":{"content":"إِنْ<br>CCONJ<br>"},"text":"إِنْ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-8f1fd9a0812f94fcb814" width="960"></span> <script type="application/json" data-for="htmlwidget-8f1fd9a0812f94fcb814">{"x":{"opts":{"content":"ابْنٌ<br>NOUN<br>Case=Gen|Definite=Cons|Gender=Masc|Number=Sing"},"text":"بْنِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-0fc981201e6ed8d26983" width="960"></span> <script type="application/json" data-for="htmlwidget-0fc981201e6ed8d26983">{"x":{"opts":{"content":"سَلَّمَ<br>VERB<br>Stem=II|ModAsp=Perf|Gender=Masc|Number=Sing|Person=2|Voice=Act"},"text":"سَلَّمْتَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-d25aded01960da9aa3cb" width="960"></span> <script type="application/json" data-for="htmlwidget-d25aded01960da9aa3cb">{"x":{"opts":{"content":"إِلَى<br>ADP<br>AdpType=Prep"},"text":"إِلَيَّ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-97c2f4d1b8cd20f17ab5" width="960"></span> <script type="application/json" data-for="htmlwidget-97c2f4d1b8cd20f17ab5">{"x":{"opts":{"content":"دِرْعٌ (دُرُوعٌ)<br>NOUN<br>Case=ِAcc|Definite=Def|Gender=Masc&Fem|Number=Sing"},"text":"الدُّرُوعَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-81e091e362211d0533de" width="960"></span> <script type="application/json" data-for="htmlwidget-81e091e362211d0533de">{"x":{"opts":{"content":"سَلَّمَ<br>VERB<br>Stem=II|ModAsp=Perf|Gender=Masc|Number=Sing|Person=1|Voice=Act"},"text":"سَلَّمْتُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-116b964440aaf1eb5a57" width="960"></span> <script type="application/json" data-for="htmlwidget-116b964440aaf1eb5a57">{"x":{"opts":{"content":"إِلَى<br>ADP<br>"},"text":"إلَيْكَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-61ba904f09f6ee33cc1a" width="960"></span> <script type="application/json" data-for="htmlwidget-61ba904f09f6ee33cc1a">{"x":{"opts":{"content":"ولدٌ (أَوْلَادٌ)<br>NOUN<br>Case=ِNom|Definite=Cons|Gender=Masc|Number=Sing"},"text":"وَلَدَكَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-ecfb825d5a6f88f2e1a4" width="960"></span> <script type="application/json" data-for="htmlwidget-ecfb825d5a6f88f2e1a4">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"وَإِلَّا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-6c1ff377fc6c38e15887" width="960"></span> <script type="application/json" data-for="htmlwidget-6c1ff377fc6c38e15887">{"x":{"opts":{"content":"ذَبَحَ يَذْبَحُ (ذَبْحٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc&Fem|Number=Sing|Person=1|Voice=Act"},"text":"ذَبَحْتُهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-882be868f03406c2f739" width="960"></span> <script type="application/json" data-for="htmlwidget-882be868f03406c2f739">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"وَأَنْتَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-013b893ebb55422f7be8" width="960"></span> <script type="application/json" data-for="htmlwidget-013b893ebb55422f7be8">{"x":{"opts":{"content":"نَظَرَ يَنْظُرُ (نَظَرٌ)<br>VERB<br>Stem=I|ModAsp=Impf|Gender=Masc|Number=Sing|Person=2|Voice=Act"},"text":"تَنْظُرُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-774e7047a49e72d58fe0" width="960"></span> <script type="application/json" data-for="htmlwidget-774e7047a49e72d58fe0">{"x":{"opts":{"content":"عَادِيآءُ<br>NOUN<br>Case=Gen|Definite=Def|Gender=Masc|Number=Sing"},"text":"عَادِيآءَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-22df6cc4c8113602aa6e" width="960"></span> <script type="application/json" data-for="htmlwidget-22df6cc4c8113602aa6e">{"x":{"opts":{"content":"فَـ<br>CCONJ<br>"},"text":"فَاخْتَرْ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-e6d9808d2841a91d4348" width="960"></span> <script type="application/json" data-for="htmlwidget-e6d9808d2841a91d4348">{"x":{"opts":{"content":"أَيٌّ<br>PART<br>"},"text":"أَيَّهُمَا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-ec2bf8a282e412f557a0" width="960"></span> <script type="application/json" data-for="htmlwidget-ec2bf8a282e412f557a0">{"x":{"opts":{"content":"شَاءَ يَشَاءُ (مَشِيئَةٌ)<br>VERB<br>Aspect=Perf|Gender=Fem|Number=Sing|Person=3|Voice=Pass"},"text":"شِئْتَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-23bf95a2ba1437f6d163" width="960"></span> <script type="application/json" data-for="htmlwidget-23bf95a2ba1437f6d163">{"x":{"opts":{"content":"فَـ<br>ADP<br>AdpType=Prep"},"text":"فَقَالَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-6228007d6205cd99e970" width="960"></span> <script type="application/json" data-for="htmlwidget-6228007d6205cd99e970">{"x":{"opts":{"content":"السَّمَوْءَلُ<br>NOUN<br>Case=ِNom|Definite=Def|Gender=Masc|Number=Sing"},"text":"السَّمَوْءَلُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-0ff2fad63d6fad82c775" width="960"></span> <script type="application/json" data-for="htmlwidget-0ff2fad63d6fad82c775">{"x":{"opts":{"content":"فَعَلَ يَفْعَلُ (فَِعْلٌ)<br>VERB<br>Stem=I|ModAsp=Imp|Gender=Masc|Number=Sing|Person=2|Voice=Act"},"text":"افْعَلْ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-554f9ea6d7d44cce0f79" width="960"></span> <script type="application/json" data-for="htmlwidget-554f9ea6d7d44cce0f79">{"x":{"opts":{"content":"مَا<br>PART<br>"},"text":"مَا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-cf841fa15760d47dd07e" width="960"></span> <script type="application/json" data-for="htmlwidget-cf841fa15760d47dd07e">{"x":{"opts":{"content":"شَاءَ يَشَاءُ (مَشِيئَةٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=2|Voice=Act"},"text":"شِئْتَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-2d79b0eaa75cb495fa9c" width="960"></span> <script type="application/json" data-for="htmlwidget-2d79b0eaa75cb495fa9c">{"x":{"opts":{"content":"فَـ<br>CCONJ<br>"},"text":"فَإِنِّي"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-a209485bdf2257ea47ae" width="960"></span> <script type="application/json" data-for="htmlwidget-a209485bdf2257ea47ae">{"x":{"opts":{"content":"لَا<br>PART<br>"},"text":"لَا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-909244590a4a1f13719a" width="960"></span> <script type="application/json" data-for="htmlwidget-909244590a4a1f13719a">{"x":{"opts":{"content":"فَـ<br>CCONJ<br>"},"text":"فلَمّا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-075965f48783256f52cc" width="960"></span> <script type="application/json" data-for="htmlwidget-075965f48783256f52cc">{"x":{"opts":{"content":"أَبْطَلَ<br>VERB<br>Stem=I|ModAsp=Impf|Gender=Masc&Fem|Number=Sing|Person=1|Voice=Act"},"text":"أُبْطِلُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-34aaa616621f8d516c09" width="960"></span> <script type="application/json" data-for="htmlwidget-34aaa616621f8d516c09">{"x":{"opts":{"content":"وَفَاءٌ<br>NOUN<br>Case=ِAcc|Definite=Cons|Gender=Masc|Number=Sing"},"text":"وَفَآئِي"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-f7a2f0d6781370d18253" width="960"></span> <script type="application/json" data-for="htmlwidget-f7a2f0d6781370d18253">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"وَعَهْدِي"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-f6b6a8b8e5a92dcfd041" width="960"></span> <script type="application/json" data-for="htmlwidget-f6b6a8b8e5a92dcfd041">{"x":{"opts":{"content":"فَـ<br>CCONJ<br>"},"text":"فَذَبَحَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-c387bc3371e9eabb6980" width="960"></span> <script type="application/json" data-for="htmlwidget-c387bc3371e9eabb6980">{"x":{"opts":{"content":"وَلَدَ (أَوْلَادٌ)<br>NOUN<br>Case=ِAcc|Definite=Cons|Gender=Masc|Number=Sing"},"text":"وَلَدَهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-f533759ae248023e806b" width="960"></span> <script type="application/json" data-for="htmlwidget-f533759ae248023e806b">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"وَهْوَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-70ca5de166410240ca72" width="960"></span> <script type="application/json" data-for="htmlwidget-70ca5de166410240ca72">{"x":{"opts":{"content":"نَظَرَ يَنْظُرُ (نَظَرٌ)<br>VERB<br>Stem=I|ModAsp=Impf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"يَنْظُرُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-b2fed83fdb39f4114834" width="960"></span> <script type="application/json" data-for="htmlwidget-b2fed83fdb39f4114834">{"x":{"opts":{"content":"ثُمَّ<br>PART<br>"},"text":"ثُمَّ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-f6e8a5a43f17cf838ab4" width="960"></span> <script type="application/json" data-for="htmlwidget-f6e8a5a43f17cf838ab4">{"x":{"opts":{"content":"لَمَّا<br>CCONJ<br>"},"text":"لَمَّا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-44c8b92cfe7effaa478f" width="960"></span> <script type="application/json" data-for="htmlwidget-44c8b92cfe7effaa478f">{"x":{"opts":{"content":"عَجَزَ يَعْجِزُ (عَجْزٌ)<br>VERB<br>Stem=I|ModAsp=Impf|Gender=Masc&Fem|Number=Sing|Person=1|Voice=Act"},"text":"عَجَزَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-fa18fd85c6fd99956bc1" width="960"></span> <script type="application/json" data-for="htmlwidget-fa18fd85c6fd99956bc1">{"x":{"opts":{"content":"مَاتَ يَمُوتُ (مَوْتٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"مَاتَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-72723a258e7b0106b0c2" width="960"></span> <script type="application/json" data-for="htmlwidget-72723a258e7b0106b0c2">{"x":{"opts":{"content":"عَنْ<br>ADP<br>"},"text":"عَنْ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-61c2186cf4444ccec56c" width="960"></span> <script type="application/json" data-for="htmlwidget-61c2186cf4444ccec56c">{"x":{"opts":{"content":"فَتْحٌ يَفْتَحُ (فَتْحٌ)<br>NOUN<br>Case=ِGen|Definite=Cons|Gender=Masc|Number=Sing"},"text":"فَتْحِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-0441f561525901c3c82e" width="960"></span> <script type="application/json" data-for="htmlwidget-0441f561525901c3c82e">{"x":{"opts":{"content":"حِصْنٌ (حُصُونٌ)<br>NOUN<br>Case=ِAcc|Definite=Cons|Gender=Masc|Number=Sing"},"text":"الْحِصْنِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-a99ee72fd53a49453f82" width="960"></span> <script type="application/json" data-for="htmlwidget-a99ee72fd53a49453f82">{"x":{"opts":{"content":"رَجَعَ يَرجِعُ (رُجُوعٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"رَجَعَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-a0c65621f4e147725756" width="960"></span> <script type="application/json" data-for="htmlwidget-a0c65621f4e147725756">{"x":{"opts":{"content":"خَابَ يَخِيبُ (خَيْبَةٌ)<br>PTCP<br>Stem=I|Case=Acc|Definite=Ind|Gender=Masc|Number=Sing|Voice=Act"},"text":"خَآئِبًا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-b609dd64ee2477b2c125" width="960"></span> <script type="application/json" data-for="htmlwidget-b609dd64ee2477b2c125">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"وَصَبَرَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-b9f261700577d3174709" width="960"></span> <script type="application/json" data-for="htmlwidget-b9f261700577d3174709">{"x":{"opts":{"content":"السَّمَوْءَلُ<br>NOUN<br>Case=ِAcc|Definite=Def|Gender=Masc|Number=Sing"},"text":"السَّمَوْءَلُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-fc39d4d09428fffa1c03" width="960"></span> <script type="application/json" data-for="htmlwidget-fc39d4d09428fffa1c03">{"x":{"opts":{"content":"عَلَى<br>ADP<br>"},"text":"عَلَى"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-1acc7beceecf137a02f5" width="960"></span> <script type="application/json" data-for="htmlwidget-1acc7beceecf137a02f5">{"x":{"opts":{"content":"ذَبَحَ يَذْبَحُ (ذَبْحٌ)<br>NOUN<br>Case=ِGen|Definite=Cons|Gender=Masc|Number=Sing"},"text":"ذَبْحِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-581bc975c13376be58c2" width="960"></span> <script type="application/json" data-for="htmlwidget-581bc975c13376be58c2">{"x":{"opts":{"content":"وَلَدٌ (أَوْلَادٌ)<br>NOUN<br>Case=ِGen|Definite=Cons|Gender=Masc|Number=Sing"},"text":"وَلَدِهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-8fad587295048ddf3a4b" width="960"></span> <script type="application/json" data-for="htmlwidget-8fad587295048ddf3a4b">{"x":{"opts":{"content":"أَرْسَلَ<br>VERB<br>Stem=IV|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"أَرْسَلَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-4cbc36017185418b1b7f" width="960"></span> <script type="application/json" data-for="htmlwidget-4cbc36017185418b1b7f">{"x":{"opts":{"content":"حَافَظَ<br>NOUN<br>Case=ِAcc|Definite=Ind|Gender=Masc|Number=Sing"},"text":"مُحَافَظَةً"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-0ccec5241912cdc25b7c" width="960"></span> <script type="application/json" data-for="htmlwidget-0ccec5241912cdc25b7c">{"x":{"opts":{"content":"عَلَى<br>ADP<br>"},"text":"عَلَى"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-fac8bcb7295f8ccb135b" width="960"></span> <script type="application/json" data-for="htmlwidget-fac8bcb7295f8ccb135b">{"x":{"opts":{"content":"وَفَاءٌ<br>NOUN<br>Case=ِGen|Definite=Cons|Gender=Masc|Number=Sing"},"text":"وَفَائِهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-f79abea8e653904435d5" width="960"></span> <script type="application/json" data-for="htmlwidget-f79abea8e653904435d5">{"x":{"opts":{"content":"فَـ<br>CCONJ<br>"},"text":"فَلَمَّا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-e99cc78182997f8ffd1c" width="960"></span> <script type="application/json" data-for="htmlwidget-e99cc78182997f8ffd1c">{"x":{"opts":{"content":"جَاءَ يَجِيءُ (مَجِيءٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"جَآء"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-1e1f7b0d75616c5c1c4a" width="960"></span> <script type="application/json" data-for="htmlwidget-1e1f7b0d75616c5c1c4a">{"x":{"opts":{"content":"وَرِثَ يَرِثُ (إِرْثٌ تُرَاثٌ)<br>PTCP<br>Stem=I|Case=Acc|Definite=Cons|Gender=Masc|Number=Sing|Voice=Act"},"text":"وَرَثَةُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-70b602871f7b123b194e" width="960"></span> <script type="application/json" data-for="htmlwidget-70b602871f7b123b194e">{"x":{"opts":{"content":"امْرُءٌ<br>NOUN<br>Case=ِGen|Definite=Cons|Gender=Masc|Number=Sing"},"text":"امْرِءِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-a999011eb099992e7be0" width="960"></span> <script type="application/json" data-for="htmlwidget-a999011eb099992e7be0">{"x":{"opts":{"content":"الْقَيْسُ<br>NOUN<br>Case=ِGen|Definite=Def|Gender=Masc|Number=Sing"},"text":"الْقَيْسِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-8bc3f23e1d61e9524d61" width="960"></span> <script type="application/json" data-for="htmlwidget-8bc3f23e1d61e9524d61">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"وَحَضَرُوا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-3111ef47ebf47ea7bd4f" width="960"></span> <script type="application/json" data-for="htmlwidget-3111ef47ebf47ea7bd4f">{"x":{"opts":{"content":"عِنْدَ<br>ADP<br>"},"text":"عِنْدَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-fce7f72ed5cf046df04d" width="960"></span> <script type="application/json" data-for="htmlwidget-fce7f72ed5cf046df04d">{"x":{"opts":{"content":"مَلِكٌ (مُلُوكٌ)<br>NOUN<br>Case=Nom|Definite=Cons|Gender=Masc|Number=Sing"},"text":"مَلِكُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-b4db8cfd83e4e15cbc65" width="960"></span> <script type="application/json" data-for="htmlwidget-b4db8cfd83e4e15cbc65">{"x":{"opts":{"content":"السَّمَوْءَلُ<br>NOUN<br>Case=ِGen|Definite=Def|Gender=Masc|Number=Sing"},"text":"السَّمَوْءَلِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-840d0fd0193e9cab8255" width="960"></span> <script type="application/json" data-for="htmlwidget-840d0fd0193e9cab8255">{"x":{"opts":{"content":"سَلَّمَ<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"سَلَّمَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-5b1a8ebd51aba5e90076" width="960"></span> <script type="application/json" data-for="htmlwidget-5b1a8ebd51aba5e90076">{"x":{"opts":{"content":"إِلَى<br>ADP<br>AdpType=Prep"},"text":"إِلَيْهِمُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-9fd320fa68884ba8d2ef" width="960"></span> <script type="application/json" data-for="htmlwidget-9fd320fa68884ba8d2ef">{"x":{"opts":{"content":"دِرْعٌ (دُرُوعٌ)<br>NOUN<br>Case=ِAcc|Definite=Def|Gender=Masc&Fem|Number=Plur"},"text":"الدُّرُوعَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-0a4e4a06566f8f71c887" width="960"></span> <script type="application/json" data-for="htmlwidget-0a4e4a06566f8f71c887">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"والسِّلَاحَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-8b17132d1680e7b8c108" width="960"></span> <script type="application/json" data-for="htmlwidget-8b17132d1680e7b8c108">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"وَرَأى"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-d0909bb8d2e633b885b8" width="960"></span> <script type="application/json" data-for="htmlwidget-d0909bb8d2e633b885b8">{"x":{"opts":{"content":"حَفِظَ يَحْفَظُ (حِفْظٌ)<br>NOUN<br>Case=ِAcc|Definite=Cons|Gender=Masc|Number=Sing"},"text":"حِفْظَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-cd2da406cdd186ba768c" width="960"></span> <script type="application/json" data-for="htmlwidget-cd2da406cdd186ba768c">{"x":{"opts":{"content":"ذِمَّةٌ (ذِمَمٌ ذِمَامٌ)<br>NOUN<br>Case=ِGen|Definite=Def|Gender=Masc|Number=Sing"},"text":"الذِّمَامِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-df47ae1be52600c5cb6e" width="960"></span> <script type="application/json" data-for="htmlwidget-df47ae1be52600c5cb6e">{"x":{"opts":{"content":"وَ<br>CCONJ<br>Case=Acc|Definite=Cons|Number=Sing"},"text":"وَرِعَايَةَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-db5a9cd2fe5107ee0d27" width="960"></span> <script type="application/json" data-for="htmlwidget-db5a9cd2fe5107ee0d27">{"x":{"opts":{"content":"وَفَاءٌ<br>NOUN<br>Case=ِGen|Definite=Def|Gender=Masc|Number=Sing"},"text":"الْوَفَآءِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-ac4b344e96487e148715" width="960"></span> <script type="application/json" data-for="htmlwidget-ac4b344e96487e148715">{"x":{"opts":{"content":"كِنْدَةُ<br>PROPN<br>Case=Gen|Definite=Ind|Gender=Fem|Number=Sing"},"text":"كِنْدَةَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-27f96e4292a85fd900a9" width="960"></span> <script type="application/json" data-for="htmlwidget-27f96e4292a85fd900a9">{"x":{"opts":{"content":"أَحَبَّ<br>ADJ<br>Case=Acc|Definite=Ind|Gender=Masc|Number=Sing"},"text":"أَحَبَّ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-91cded3b612bf8a16f47" width="960"></span> <script type="application/json" data-for="htmlwidget-91cded3b612bf8a16f47">{"x":{"opts":{"content":"إِلَى<br>ADP<br>"},"text":"إِلَيْهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-a0e9e96e803345cb67af" width="960"></span> <script type="application/json" data-for="htmlwidget-a0e9e96e803345cb67af">{"x":{"opts":{"content":"مِنْ<br>ADP<br>"},"text":"مِنْ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-c3349e5a09df18c9c7eb" width="960"></span> <script type="application/json" data-for="htmlwidget-c3349e5a09df18c9c7eb">{"x":{"opts":{"content":"حَيٰوةٌ<br>NOUN<br>Case=ِGen|Definite=Cons|Gender=Fem|Number=Sing"},"text":"حَيٰوةِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-a86740df8b23d5ea3d59" width="960"></span> <script type="application/json" data-for="htmlwidget-a86740df8b23d5ea3d59">{"x":{"opts":{"content":"وَلَدٌ (أَوْلَادٌ)<br>PRON<br>Case=ِGen|Definite=Cons|Gender=Masc|Number=Sing"},"text":"وَلَدِهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-d6f16008200221fa0760" width="960"></span> <script type="application/json" data-for="htmlwidget-d6f16008200221fa0760">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"وَبَقَآئِهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-ab69e4cb1117bf501c34" width="960"></span> <script type="application/json" data-for="htmlwidget-ab69e4cb1117bf501c34">{"x":{"opts":{"content":"فَـ<br>CCONJ<br>"},"text":"فَصَارَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-9a506d3d1c75a675ad99" width="960"></span> <script type="application/json" data-for="htmlwidget-9a506d3d1c75a675ad99">{"x":{"opts":{"content":"ضَرَبَ يَضْرِبُ (ضَرْبٌ)<br>NOUN<br>Case=ِNom|Definite=Cons|Gender=Masc|Number=Sing"},"text":"ضَرْبُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-fefcca8be2116b7adc6b" width="960"></span> <script type="application/json" data-for="htmlwidget-fefcca8be2116b7adc6b">{"x":{"opts":{"content":"مَثَلٌ<br>NOUN<br>Case=ِGen|Definite=Def|Gender=Masc|Number=Sing"},"text":"الْمَثَلِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-647f9eb84ab271bb2f59" width="960"></span> <script type="application/json" data-for="htmlwidget-647f9eb84ab271bb2f59">{"x":{"opts":{"content":"بِـ<br>ADP<br>"},"text":"بِالْوَفَآءِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-0a76705e135fca4b7d23" width="960"></span> <script type="application/json" data-for="htmlwidget-0a76705e135fca4b7d23">{"x":{"opts":{"content":"إِلَى<br>ADP<br>AdpType=Prep"},"text":"إِلَى"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-0cd57e68a19a5a75fccb" width="960"></span> <script type="application/json" data-for="htmlwidget-0cd57e68a19a5a75fccb">{"x":{"opts":{"content":"لِـ<br>ADP<br>"},"text":"لَهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-9726b93a9d191b35333a" width="960"></span> <script type="application/json" data-for="htmlwidget-9726b93a9d191b35333a">{"x":{"opts":{"content":"دُونَ<br>ADP<br>"},"text":"دُونَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-4bf91997d058b92aa327" width="960"></span> <script type="application/json" data-for="htmlwidget-4bf91997d058b92aa327">{"x":{"opts":{"content":"غَيْرٌ<br>PART<br>"},"text":"غَيْرِهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-7dc3810267d5beaa20ed" width="960"></span> <script type="application/json" data-for="htmlwidget-7dc3810267d5beaa20ed">{"x":{"opts":{"content":"أَنَّ<br>CCONJ<br>"},"text":"أَنَّ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-106612c8e84be456d3aa" width="960"></span> <script type="application/json" data-for="htmlwidget-106612c8e84be456d3aa">{"x":{"opts":{"content":"السَّمَوْءَلُ<br>NOUN<br>Case=Gen|Definite=Def|Gender=Masc|Number=Sing"},"text":"السَّمَوْءَلِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-820388e2dc066e1a4007" width="960"></span> <script type="application/json" data-for="htmlwidget-820388e2dc066e1a4007">{"x":{"opts":{"content":"رَسُولٌ (رُسُلٌ)<br>NOUN<br>Case=Acc|Definite=Ind|Gender=Masc|Number=Sing"},"text":"رَسُولًا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-51c9a190ea18124f243f" width="960"></span> <script type="application/json" data-for="htmlwidget-51c9a190ea18124f243f">{"x":{"opts":{"content":"طَلَبَ يَطْلُبُ (طَلَبٌ)<br>PTCP<br>Stem=I|Case=Acc|Definite=Ind|Gender=Masc|Number=Sing|Voice=Act"},"text":"طَالِبًا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-e3730087c59783d8244c" width="960"></span> <script type="application/json" data-for="htmlwidget-e3730087c59783d8244c">{"x":{"opts":{"content":"لِ<br>ADP<br>AdpType=Prep"},"text":"لِلدُّرُوعِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-6997769acbb918c9c283" width="960"></span> <script type="application/json" data-for="htmlwidget-6997769acbb918c9c283">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"والسِّلَاحِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-245af5f9ec8a713adefe" width="960"></span> <script type="application/json" data-for="htmlwidget-245af5f9ec8a713adefe">{"x":{"opts":{"content":"الَّذِي<br>PRON<br>Gender=Fem|Number=Sing|PronType=Rel"},"text":"الَّتِي"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-1de92f769bcc7f52f5fd" width="960"></span> <script type="application/json" data-for="htmlwidget-1de92f769bcc7f52f5fd">{"x":{"opts":{"content":"أَوَدَعَ<br>VERB<br>Stem=IV|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"أَوْدَعَهَا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-ded3b71d85c9f2484671" width="960"></span> <script type="application/json" data-for="htmlwidget-ded3b71d85c9f2484671">{"x":{"opts":{"content":"عِنْدَ<br>ADP<br>Case=Acc|Definite=Cons|Number=Sing"},"text":"عِنْدَهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-0c31e93442db26a3a4f6" width="960"></span> <script type="application/json" data-for="htmlwidget-0c31e93442db26a3a4f6">{"x":{"opts":{"content":"امْرُءٌ<br>NOUN<br>Case=Gen|Definite=Cons|Gender=Masc|Number=Sing"},"text":"امْرُءُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-9236aa74b58037caaff9" width="960"></span> <script type="application/json" data-for="htmlwidget-9236aa74b58037caaff9">{"x":{"opts":{"content":"الْقُيْسُ<br>NOUN<br>Case=Gen|Definite=Def|Number=Plur"},"text":"الْقَيْسِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-d89e624a53139b69a423" width="960"></span> <script type="application/json" data-for="htmlwidget-d89e624a53139b69a423">{"x":{"opts":{"content":"إِمْرُءٌ<br>PROPN<br>Case=Acc|Definite=Cons|Number=Sing"},"text":"امْرَءَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-8c8ad160f706fcda8811" width="960"></span> <script type="application/json" data-for="htmlwidget-8c8ad160f706fcda8811">{"x":{"opts":{"content":"فَـ<br>CCONJ<br>"},"text":"فَقَالَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-0e212a004933bc488044" width="960"></span> <script type="application/json" data-for="htmlwidget-0e212a004933bc488044">{"x":{"opts":{"content":"السَّمَوْءَلُ<br>NOUN<br>Case=Nom|Definite=Def|Gender=Masc|Number=Sing"},"text":"السَّمَوْءَلُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-2bc0e29d83eb99e054a8" width="960"></span> <script type="application/json" data-for="htmlwidget-2bc0e29d83eb99e054a8">{"x":{"opts":{"content":"لَا<br>PART<br>"},"text":"لا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-127bf774086d10791f9c" width="960"></span> <script type="application/json" data-for="htmlwidget-127bf774086d10791f9c">{"x":{"opts":{"content":"دَفَعَ يَدْفَعُ (دَفْعٌ)<br>VERB<br>Stem=I|ModAsp=Impf|Gender=Masc|Number=Sing|Person=1|Voice=Act"},"text":"أَدْفَعُهَا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-c6fbfa2bc8b998cf7d04" width="960"></span> <script type="application/json" data-for="htmlwidget-c6fbfa2bc8b998cf7d04">{"x":{"opts":{"content":"إِلَّا<br>PART<br>"},"text":"إِلَّا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-4330aec797ad861d8eff" width="960"></span> <script type="application/json" data-for="htmlwidget-4330aec797ad861d8eff">{"x":{"opts":{"content":"لِـ<br>ADP<br>"},"text":"لِمُسْتَحِقِّهَا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-e8fbefee3f700b37c03a" width="960"></span> <script type="application/json" data-for="htmlwidget-e8fbefee3f700b37c03a">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"وَأَبَى"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-8f783a13a0a0068a7385" width="960"></span> <script type="application/json" data-for="htmlwidget-8f783a13a0a0068a7385">{"x":{"opts":{"content":"أَنْ<br>CCONJ<br>"},"text":"أَنْ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-7b39f55de9c7986cebb8" width="960"></span> <script type="application/json" data-for="htmlwidget-7b39f55de9c7986cebb8">{"x":{"opts":{"content":"دَفَعَ يَدْفَعُ (دَفْعٌ)<br>VERB<br>Stem=I|ModAsp=Impf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"يَدْفَعَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-c6c295fa7abc73489005" width="960"></span> <script type="application/json" data-for="htmlwidget-c6c295fa7abc73489005">{"x":{"opts":{"content":"شَيْءٌ (أَشْيَاءُ)<br>NOUN<br>Case=Acc|Definite=Ind|Gender=Masc|Number=Sing"},"text":"شَيْــًٔا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-064315b1b330c5b67751" width="960"></span> <script type="application/json" data-for="htmlwidget-064315b1b330c5b67751">{"x":{"opts":{"content":"الْقَيْسُ<br>PROPN<br>Case=Gen|Definite=Def|Number=Sing"},"text":"الْقَيْسِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-665fe05298342291e498" width="960"></span> <script type="application/json" data-for="htmlwidget-665fe05298342291e498">{"x":{"opts":{"content":"مِنْ<br>ADP<br>"},"text":"مِنْهَا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-e0d4963e3da1fb8a2d20" width="960"></span> <script type="application/json" data-for="htmlwidget-e0d4963e3da1fb8a2d20">{"x":{"opts":{"content":"إِلَى<br>ADP<br>"},"text":"إِلَى"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-112c47743eee4fc58b6d" width="960"></span> <script type="application/json" data-for="htmlwidget-112c47743eee4fc58b6d">{"x":{"opts":{"content":"رَسُولٌ (رُسُلٌ)<br>NOUN<br>Case=Gen|Definite=Cons|Gender=Masc|Number=Sing"},"text":"رَسُولِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-cd1e9c6f8572017ac6ee" width="960"></span> <script type="application/json" data-for="htmlwidget-cd1e9c6f8572017ac6ee">{"x":{"opts":{"content":"مَلِكٌ (مُلُوكٌ)<br>NOUN<br>Case=Gen|Definite=Def|Gender=Masc|Number=Sing"},"text":"الْمَلِكِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-d96ec2cfe18b35b74359" width="960"></span> <script type="application/json" data-for="htmlwidget-d96ec2cfe18b35b74359">{"x":{"opts":{"content":"فَـ<br>CCONJ<br>"},"text":"فَعَاوَدَهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-8f5e21e98914954dae15" width="960"></span> <script type="application/json" data-for="htmlwidget-8f5e21e98914954dae15">{"x":{"opts":{"content":"فَـ<br>CCONJ<br>"},"text":"فَأَبَى"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-86f4effc7c55ab6db1ea" width="960"></span> <script type="application/json" data-for="htmlwidget-86f4effc7c55ab6db1ea">{"x":{"opts":{"content":"أَيضًا<br>ADV<br>"},"text":"أَيْضًا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-06c0ec49f668deda15a0" width="960"></span> <script type="application/json" data-for="htmlwidget-06c0ec49f668deda15a0">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"وَقَالَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-9d102e0c11ae7a042fd9" width="960"></span> <script type="application/json" data-for="htmlwidget-9d102e0c11ae7a042fd9">{"x":{"opts":{"content":"لِـ<br>ADP<br>"},"text":"لِلّٰه"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-3de12190324996038402" width="960"></span> <script type="application/json" data-for="htmlwidget-3de12190324996038402">{"x":{"opts":{"content":"عَظِيمٌ (عِظَامٌ عُظَمَاءُ)<br>ADJ<br>Case=Gen|Definite=Def|Gender=Masc|Number=Sing"},"text":"الْعَظِيمِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-857cf4ed9561f4932dae" width="960"></span> <script type="application/json" data-for="htmlwidget-857cf4ed9561f4932dae">{"x":{"opts":{"content":"قَبلَ<br>ADP<br>"},"text":"قَبْلَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-fb8b2648a13afbd96534" width="960"></span> <script type="application/json" data-for="htmlwidget-fb8b2648a13afbd96534">{"x":{"opts":{"content":"لَا<br>PART<br>"},"text":"لَا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-9d4c57d029f59f77794c" width="960"></span> <script type="application/json" data-for="htmlwidget-9d4c57d029f59f77794c">{"x":{"opts":{"content":"غَدَرَ يَغْدُِرُ (غَدْرٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc&Fem|Number=Sing|Person=1|Voice=Act"},"text":"أَغْدُرُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-be073b8eb7d1c10d996e" width="960"></span> <script type="application/json" data-for="htmlwidget-be073b8eb7d1c10d996e">{"x":{"opts":{"content":"بِـ<br>ADP<br>"},"text":"بِذِمَّتِي"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-77d2442e0d90e3fb2a5b" width="960"></span> <script type="application/json" data-for="htmlwidget-77d2442e0d90e3fb2a5b">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"وَلَا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-57016432b64d6b6cfef2" width="960"></span> <script type="application/json" data-for="htmlwidget-57016432b64d6b6cfef2">{"x":{"opts":{"content":"خَانَ يَخُونُ (خَوْنٌ خِيَانَةٌ)<br>VERB<br>Stem=I|ModAsp=Impf|Gender=Masc&Fem|Number=Sing|Person=1|Voice=Act"},"text":"أَخُونُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-aa9fa675ad0e256f39d2" width="960"></span> <script type="application/json" data-for="htmlwidget-aa9fa675ad0e256f39d2">{"x":{"opts":{"content":"أَمَانَةٌ<br>NOUN<br>Case=Acc|Definite=Cons|Gender=Fem|Number=Sing"},"text":"أَمَانَتِي"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-3d98b0350c83dbc9bfd9" width="960"></span> <script type="application/json" data-for="htmlwidget-3d98b0350c83dbc9bfd9">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"وَلَا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-c83cfa0e7b14d2671979" width="960"></span> <script type="application/json" data-for="htmlwidget-c83cfa0e7b14d2671979">{"x":{"opts":{"content":"تَرَكَ يَتْرُكُ (تَرْكٌ)<br>VERB<br>Stem=I|ModAsp=Impf|Gender=Masc&Fem|Number=Sing|Person=1|Voice=Act"},"text":"أَتْرُكُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-50c4aec058538280d8d9" width="960"></span> <script type="application/json" data-for="htmlwidget-50c4aec058538280d8d9">{"x":{"opts":{"content":"وَفَاءٌ<br>NOUN<br>Case=Acc|Definite=Def|Gender=Masc|Number=Sing"},"text":"الْوَفَآءَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-5805b4c84cab4f3a206a" width="960"></span> <script type="application/json" data-for="htmlwidget-5805b4c84cab4f3a206a">{"x":{"opts":{"content":"وَجَبَ يَجِبُ (وُجُوبٌ)<br>PTCP<br>Stem=I|Case=Acc|Definite=Def|Gender=Masc|Number=Sing|Voice=Act"},"text":"الْوَاجِبَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-a5b7a29062ea79a7e9bd" width="960"></span> <script type="application/json" data-for="htmlwidget-a5b7a29062ea79a7e9bd">{"x":{"opts":{"content":"مَوْتٌ<br>NOUN<br>Case=Gen|Definite=Cons|Gender=Masc|Number=Sing"},"text":"مَوْتِهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-2009a300c6376cc85e28" width="960"></span> <script type="application/json" data-for="htmlwidget-2009a300c6376cc85e28">{"x":{"opts":{"content":"عَلَى<br>ADP<br>"},"text":"عَلَيَّ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-8ef4828ef4bd9d51a5ba" width="960"></span> <script type="application/json" data-for="htmlwidget-8ef4828ef4bd9d51a5ba">{"x":{"opts":{"content":"لِـ<br>ADP<br>"},"text":"لِإِرْضَاءِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-8bb2d3f9d7c1ba4f6a5d" width="960"></span> <script type="application/json" data-for="htmlwidget-8bb2d3f9d7c1ba4f6a5d">{"x":{"opts":{"content":"مَلِكٌ (مُلُوكٌ)<br>NOUN<br>Case=Gen|Definite=Def|Gender=Masc|Number=Sing"},"text":"الْمَلِكِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-7a7a4a6ea8ba32db2074" width="960"></span> <script type="application/json" data-for="htmlwidget-7a7a4a6ea8ba32db2074">{"x":{"opts":{"content":"فَـ<br>CCONJ<br>"},"text":"فَلَمَّا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-4df88c2257d563460f4e" width="960"></span> <script type="application/json" data-for="htmlwidget-4df88c2257d563460f4e">{"x":{"opts":{"content":"بَلَّغَ<br>VERB<br>Stem=II|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"بَلَّغَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-9383bf36569db1fb1f4c" width="960"></span> <script type="application/json" data-for="htmlwidget-9383bf36569db1fb1f4c">{"x":{"opts":{"content":"رَسُولٌ (رُسُلٌ)<br>NOUN<br>Case=Nom|Definite=Def|Gender=Masc|Number=Sing"},"text":"الرَّسُولُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-1dc46f95b27829ed57f5" width="960"></span> <script type="application/json" data-for="htmlwidget-1dc46f95b27829ed57f5">{"x":{"opts":{"content":"مَلِكٌ (مُلُوكٌ)<br>NOUN<br>Case=ِAcc|Definite=Def|Gender=Masc|Number=Sing"},"text":"الْمَلِكَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-a4abed7bbf6c5a68e8af" width="960"></span> <script type="application/json" data-for="htmlwidget-a4abed7bbf6c5a68e8af">{"x":{"opts":{"content":"مَا<br>CCONJ<br>"},"text":"مَا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-fd43e2584528a908eeec" width="960"></span> <script type="application/json" data-for="htmlwidget-fd43e2584528a908eeec">{"x":{"opts":{"content":"قَالَ يَقُولُ (قَوْلٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"قَالَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-59fc460a08715b9aad2e" width="960"></span> <script type="application/json" data-for="htmlwidget-59fc460a08715b9aad2e">{"x":{"opts":{"content":"السَّمَوْءَلُ<br>NOUN<br>Case=Nom|Definite=Def|Gender=Masc|Number=Sing"},"text":"السَّمَوْءَلُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-1f52364b5eb387410bb3" width="960"></span> <script type="application/json" data-for="htmlwidget-1f52364b5eb387410bb3">{"x":{"opts":{"content":"أَوْدَعَ<br>VERB<br>Stem=IV|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"أَوْدَعَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-1e245d678232b8cb3c7d" width="960"></span> <script type="application/json" data-for="htmlwidget-1e245d678232b8cb3c7d">{"x":{"opts":{"content":"قَصَدَ يَقْصُدُ (قَصْدٌ)<br>VERB<br>Stem=I|ModAsp=Perf|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"قَصَدَهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-dd039a01d97de64030d4" width="960"></span> <script type="application/json" data-for="htmlwidget-dd039a01d97de64030d4">{"x":{"opts":{"content":"مَلِكٌ (مُلُوكٌ)<br>NOUN<br>Case=ِNom|Definite=Def|Gender=Masc|Number=Sing"},"text":"الْمَلِكُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-eb65bc2e13a51f30a848" width="960"></span> <script type="application/json" data-for="htmlwidget-eb65bc2e13a51f30a848">{"x":{"opts":{"content":"بِـ<br>ADP<br>"},"text":"بِعَسْكَرِهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-4748f5e1771708669054" width="960"></span> <script type="application/json" data-for="htmlwidget-4748f5e1771708669054">{"x":{"opts":{"content":"فَـ<br>CCONJ<br>"},"text":"فَدَخَلَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-ac4bcdb69c9510780c73" width="960"></span> <script type="application/json" data-for="htmlwidget-ac4bcdb69c9510780c73">{"x":{"opts":{"content":"السَّمَوْءَلُ<br>NOUN<br>Case=Nom|Definite=Def|Gender=Masc|Number=Sing"},"text":"السَّمَوْءَلُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-60bd639fefe3975df640" width="960"></span> <script type="application/json" data-for="htmlwidget-60bd639fefe3975df640">{"x":{"opts":{"content":"فِي<br>ADP<br>"},"text":"فِي"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-30aff466c8eed7d2eba7" width="960"></span> <script type="application/json" data-for="htmlwidget-30aff466c8eed7d2eba7">{"x":{"opts":{"content":"حِصْنٌ (حُصُونٌ)<br>NOUN<br>Case=ِGen|Definite=Cons|Gender=Masc|Number=Sing"},"text":"حِصْنِهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-9ec2a2f2e505dea29bbe" width="960"></span> <script type="application/json" data-for="htmlwidget-9ec2a2f2e505dea29bbe">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"وامْتَنَعَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-7d75858b8d092965f916" width="960"></span> <script type="application/json" data-for="htmlwidget-7d75858b8d092965f916">{"x":{"opts":{"content":"بِـ<br>ADP<br>"},"text":"بِهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-78c70d1b86662a7f7732" width="960"></span> <script type="application/json" data-for="htmlwidget-78c70d1b86662a7f7732">{"x":{"opts":{"content":"فَـ<br>CCONJ<br>"},"text":"فَحَاصَرَهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-65aef35af210af5be895" width="960"></span> <script type="application/json" data-for="htmlwidget-65aef35af210af5be895">{"x":{"opts":{"content":"دِرْعٌ (دُرُوعٌ)<br>NOUN<br>Case=Acc|Definite=Ind|Gender=Com|Number=Plur"},"text":"دُرُوعًا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-5a9832874413c2b0e954" width="960"></span> <script type="application/json" data-for="htmlwidget-5a9832874413c2b0e954">{"x":{"opts":{"content":"مَلِكٌ (مُلُوكٌ)<br>NOUN<br>Case=ِNom|Definite=Def|Gender=Masc|Number=Sing"},"text":"الْمَلِكُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-e14c2540b565880d3a3c" width="960"></span> <script type="application/json" data-for="htmlwidget-e14c2540b565880d3a3c">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"وَكَانَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-1bd1a623d7f4c69f164e" width="960"></span> <script type="application/json" data-for="htmlwidget-1bd1a623d7f4c69f164e">{"x":{"opts":{"content":"وَلَدٌ<br>NOUN<br>Case=ِNom|Definite=Cons|Gender=Masc|Number=Sing"},"text":"وَلَدُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-faeb30f18b335564691e" width="960"></span> <script type="application/json" data-for="htmlwidget-faeb30f18b335564691e">{"x":{"opts":{"content":"السَّمَوْءَلُ<br>NOUN<br>Case=ِGen|Definite=Def|Gender=Masc|Number=Sing"},"text":"السَّمَوْءَلِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-042d5a8ed38b0a8f98e7" width="960"></span> <script type="application/json" data-for="htmlwidget-042d5a8ed38b0a8f98e7">{"x":{"opts":{"content":"قَبلَ<br>ADP<br>"},"text":"قَبْلَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-8797e1e652a9ae4baf1c" width="960"></span> <script type="application/json" data-for="htmlwidget-8797e1e652a9ae4baf1c">{"x":{"opts":{"content":"حَاصَرَ<br>NOUN<br>Case=ِGen|Definite=Def|Gender=Fem|Number=Sing"},"text":"الْمُحَاصَرَةِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-ebe4ec217914f55cb888" width="960"></span> <script type="application/json" data-for="htmlwidget-ebe4ec217914f55cb888">{"x":{"opts":{"content":"خَارِجَ<br>ADP<br>"},"text":"خَارِجَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-ee29b7027c5411032b26" width="960"></span> <script type="application/json" data-for="htmlwidget-ee29b7027c5411032b26">{"x":{"opts":{"content":"حِصْنٌ (حُصُونٌ)<br>NOUN<br>Case=ِGen|Definite=Def|Gender=Gen|Number=Sing"},"text":"الْحِصْنِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-c55cef20a34f03c64b16" width="960"></span> <script type="application/json" data-for="htmlwidget-c55cef20a34f03c64b16">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"وَلَمْ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-0eee5ec8e6ad95bdb396" width="960"></span> <script type="application/json" data-for="htmlwidget-0eee5ec8e6ad95bdb396">{"x":{"opts":{"content":"حَضَرَ يَحضُرُ (حُضُورٌ)<br>VERB<br>Stem=I|ModAsp=Juss|Gender=Masc|Number=Sing|Person=3|Voice=Act"},"text":"يَحْضُرْ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-cc29d0d2f45581c3a9a6" width="960"></span> <script type="application/json" data-for="htmlwidget-cc29d0d2f45581c3a9a6">{"x":{"opts":{"content":"و<br>CCONJ<br>"},"text":"وَسِلَاحًا"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-a8b704551b1bfc0ea029" width="960"></span> <script type="application/json" data-for="htmlwidget-a8b704551b1bfc0ea029">{"x":{"opts":{"content":"حِينَ<br>ADP<br>"},"text":"حِينَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-7a4fa062c7fa9ab0d4a1" width="960"></span> <script type="application/json" data-for="htmlwidget-7a4fa062c7fa9ab0d4a1">{"x":{"opts":{"content":"حَاصَرَ<br>NOUN<br>Case=ِGen|Definite=Def|Gender=Fem|Number=Sing"},"text":"الْمُحَاصَرَةِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-694c20c48ae31c0d6970" width="960"></span> <script type="application/json" data-for="htmlwidget-694c20c48ae31c0d6970">{"x":{"opts":{"content":"لِـ<br>ADP<br>"},"text":"لِيَقْتُلَهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-a317a5008900045a443b" width="960"></span> <script type="application/json" data-for="htmlwidget-a317a5008900045a443b">{"x":{"opts":{"content":"مَلِكٌ (مُلُوكٌ)<br>NOUN<br>Case=ِNom|Definite=Def|Gender=Masc|Number=Sing"},"text":"الْمَلِكُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-98468c198e3d1180a325" width="960"></span> <script type="application/json" data-for="htmlwidget-98468c198e3d1180a325">{"x":{"opts":{"content":"غَدَّارٌ<br>NOUN<br>Case=ِNom|Definite=Def|Gender=Masc|Number=Sing"},"text":"الْغَدَّارُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-1440976393dc4ca8ee68" width="960"></span> <script type="application/json" data-for="htmlwidget-1440976393dc4ca8ee68">{"x":{"opts":{"content":"فَـ<br>CCONJ<br>"},"text":"فَظَفِرَ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-47a85678a4b2174d1d5e" width="960"></span> <script type="application/json" data-for="htmlwidget-47a85678a4b2174d1d5e">{"x":{"opts":{"content":"بِـ<br>ADP<br>"},"text":"بِهِ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-24b033becf51e95d19f3" width="960"></span> <script type="application/json" data-for="htmlwidget-24b033becf51e95d19f3">{"x":{"opts":{"content":"مَلِكٌ (مُلُوكٌ)<br>NOUN<br>Case=ِNom|Definite=Def|Gender=Masc|Number=Sing"},"text":"الْمَلِكُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-c82712b2b9b03d0ff85c" width="960"></span> <script type="application/json" data-for="htmlwidget-c82712b2b9b03d0ff85c">{"x":{"opts":{"content":"وَ<br>CCONJ<br>"},"text":"وَاسْتَأْسَرَهُ"},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="500" id="htmlwidget-93f7ef7cca1910b5351d" width="960"></span> <script type="application/json" data-for="htmlwidget-93f7ef7cca1910b5351d">{"x":{"opts":{"content":"ثُمَّ<br>CCONJ<br>"},"text":"ثُمَّ"},"evals":[],"jsHooks":[]}</script></p>
+</div>
+</div>
+<div id="словарь" class="section level2">
+<h2>Словарь</h2>
+<div dir="rtl">
+<p>أَبْطَلَотменить, аннулировать; أَبَى يَأْبِي (إِبَاءَةٌ)отвергать, отказываться;
+أَحَبَّболее любимый; أَرْسَلَотправлять, посылать; أَرْضَىудовлетворять, угождать;
+أَرَى يَرَى (رَأْيٌ رُؤْيَةٌ)видеть; أَسَرَ يَأْسِرُ (أَسْرٌ)пленить, взять в плен;
+أَمَانَةٌвещь, отданная на хранение; أَنَّчто; أَنْчтобы; أَنْتَты (м.р.);
+أَوْدَعَдавать на сохранение; أَوَدَعَдавать на хранение; أَيٌّкакой; أَيضًاтакже,
+тоже; إِلَّاкроме, исключая; إِلَّاчаст. исключения; إِلَى; إِلَىна; إِلَىпо
+направлению к; إِلَىпред. выражающий дат.; إِمْرُءٌ(им.с.) Имру-ль-Кайс;
+إِنْесли; إِنَّчаст. усиления; إِيَّاчаст. прям. доп. для мест. суфф.;
+ابْنٌ(им.с.) ас-Самаваль ибн Адия; اخْتَارَвыбирать; اسْتَأَسَرَпленить, взять в
+плен; اسْتَحَقَّиметь право; الَّذِيкоторый; السَّمَوْءَلُ(им.с.) ас-Самаваль;
+السَّمَوْءَلُ(им.с.) ас-Самаваль ибн Адия; السَّمَوْءَلُас-Самаваль;
+السَّمَوْءَلُас-Самваль; الْقَيْسُ(им.с.) Имру-ль-Кайс; الْقُيْسُ(им.с.) Имру-ль-Кайс;
+اللهُБог; امْتَنَعَукрепиться; امْرُءٌ(им.с.) Имру-ль-Кайс; بِـ; بِـв; بِـвместе с;
+بِـс; بِـчего; بَقِيَ يَبْقَى (بَقَاءٌ)оставаться, сохраниться; بَلَّغَсообщать; تَرَكَ
+يَتْرُكُ (تَرْكٌ)отказываться; ثُمَّзатем; جَاءَ يَجِيءُ (مَجِيءٌ)приходить;
+حَاصَرَокружение; حَاصَرَокружить; حَافَظَзащищать (что عَلَى); حِصْنٌ (حُصُونٌ)крепость;
+حَضَرَ يَحضُرُ (حُضُورٌ)предстать, явиться; حَضَرَ يَحضُرُ (حُضُورٌ)присутствовать; حَفِظَ
+يَحْفَظُ (حِفْظٌ)сохранять, беречь; حَوْلَвокруг; حِينَ(временной союз) когда;
+حَيٰوةٌжизнь; خَابَ يَخِيبُ (خَيْبَةٌ)терпеть неудачу; خَارِجَза пределами, вне; خَانَ
+يَخُونُ (خَوْنٌ خِيَانَةٌ)не исполнять, нарушать; دَخَلَ يَدْخُلُ (دُخُولٌ)входить; دِرْعٌ
+(دُرُوعٌ)кольчуга; دَفَعَ يَدْفَعُ (دَفْعٌ)давать, отдавать; دَفَعَ يَدْفَعُ (دَفْعٌ)отдать;
+دُونَа не, кроме; ذَبَحَ يَذْبَحُ (ذَبْحٌ)зарезать; ذِمَّةٌ (ذِمَمٌ ذِمَامٌ)договор; رَأَى يَرَى
+(رَأْيٌ رُؤْيَةٌ)думать, считать, полагать; رَجَعَ يَرجِعُ (رُجُوعٌ)вернуться,
+возвратиться; رَسُولٌ (رُسُلٌ)посланник; رَعَى يَرْعَى (رَعْيٌ رِعَايَةٌ)следить,
+соблюдать; سِلاَحٌ (أَسْلِحَةٌ)оружие; سِلَاحٌ (أَسْلِحَةٌ)оружие; سَلَّمَпередать;
+سَلَّمَпередать; سَلَّمَпередать (кому إِلَى); شَاءَ يَشَاءُ (مَشِيئَةٌ)желать, хотеть; شَيْءٌ
+(أَشْيَاءُ)вещь, предмет; صَارَ يَصَارُ (مَصِيرٌ)стать, сделаться; صَبَرَ يَصْبِرُ
+(صَبْرٌ)терпеть (что عَلَى); صَدَّقَверить; ضَرَبَ يَضْرِبُ (ضَرْبٌ)приводить пример; طَافَ
+يَطُوفُ (طَوْفٌ طَوَافٌ)обходить вокруг; طَلَبَ يَطْلُبُ (طَلَبٌ)требовать; ظَفِرَ يَظْفَرُ
+(ظَفَرٌ)одлеть, одержать верх (над кем بِـ); عَادِيآءُ(им.с.) ас-Самаваль ибн
+Адия; عَاوَدَвозвращаться, повторять; عَجَزَ يَعْجِزُ (عَجْزٌ)быть не в состоянии
+сделать (что عَنْ); عَسْكَرٌ (عَسَاكِرُ)войско; عَظِيمٌ (عِظَامٌ عُظَمَاءُ)великий; عَلَى; عَنْ;
+عِنْدَперед; عِندَу; عِنْدَу; عَهْدٌ (عُهُودٌ)обещание, обет; غَدَّارٌпредатель; غَدَرَ يَغْدُِرُ
+(غَدْرٌ)изменять (кому-чему بِـ); غَيْرٌдругой; فَـзатем, и; فَـто; فَتْحٌ يَفْتَحُ
+(فَتْحٌ)завоевать; فَعَلَ يَفْعَلُ (فَِعْلٌ)делать; فِيв; قَالَ يَقُولُ (قَوْلٌ)сказать,
+произнести; قَالَ يَقُولُ (قَوْلٌ)сказать, произнести; говорить; قَبلَ(временной
+пред.) перед; до; قَبلَдо, прежде; قَتَلَ يَقْتُلُ (قَتْلٌ)убивать; قَدْчаст., выр.
+завершённость действия перед фор. перфекта; قَصَدَ يَقْصُدُ (قَصْدٌ)направляться;
+ـكَты (м.р.); كَانَ يَكُونُ (كَوْنٌ)быть; كِنْدَةُ(им.с.) Кинда; لِـ(част. цели)
+чтобы; لِпред. вводит прямое дополнение при причастии; لِـпред., в
+сочетании с сущ. и мест. соотвествует дат.; لِـчаст. клятвы; لَاчаст.
+отрицания; لَمْчаст. отрицания; لَمَّاкогда; لَمَّاкогда; مَاто (что); مَاто,
+(что); مَاتَ يَمُوتُ (مَوْتٌ)умереть; مَثَلٌприводить пример; مَلِكٌ (مُلُوكٌ)царь; مِنْот,
+из; مِنْчем; مَوْتٌсмерть; نَادَىзвать (какими словами بِـ); نَظَرَ يَنْظُرُ
+(نَظَرٌ)смотреть; ـهُего; ــــهُон; ـهُон; ـهُон (м.р.); ـهَاона; ـهُمْони (м.р.);
+هُمَاоба; هُوَон; وَзатем, и; وи; وَи; وَجَبَ يَجِبُ (وُجُوبٌ)быть обязытельным (для
+кого عَلَى); وَرِثَ يَرِثُ (إِرْثٌ تُرَاثٌ)наследовать; وَفَاءٌисполнение (обещания);
+وَفَاءٌиспроленение (обещания); ولدٌ (أَوْلَادٌ)ребёнок, сын; وَلَدٌ
+(أَوْلَادٌ)ребёнок, сын; وَلَدَ (أَوْلَادٌ)ребёнок, сын; وَلَدٌсын; ـِيя</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
