@@ -10,10 +10,10 @@ map(list.files("texts"), function(i){
   file_name <- unique(df$file_name)
   
   "
-  ```{r setup, include=FALSE}
-  knitr::opts_chunk$set(echo = FALSE)
-  library(tippy)
-  ```
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tippy)
+```
   " %>% 
     write_lines(str_c(file_name, ".Rmd"))
   

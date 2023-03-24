@@ -3,7 +3,7 @@
 knitr::opts_chunk$set(echo = FALSE)
 library(tippy)
 ```
-
+  
 ## How Samuel bin Adiya, the Jewish hero, kept his word
 
 ::: {dir=rtl}

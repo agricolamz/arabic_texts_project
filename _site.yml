@@ -7,6 +7,8 @@ navbar:
       menu:
         - href: how_samuel.html
           text: How Samuel bin Adiya, the Jewish hero, kept his word
+        - href: the_last_raid.html
+          text: The last raid
 output_dir: docs
 output:
   html_document:
