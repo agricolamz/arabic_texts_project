@@ -9,9 +9,12 @@ navbar:
           text: How Samuel bin Adiya, the Jewish hero, kept his word
         - href: the_last_raid.html
           text: The last raid
+    - href: search.html
+      text: поиск
 output_dir: docs
 output:
   html_document:
+    css: styles.css  
     theme: lumen
     highlight: tango
     self_contained: yes

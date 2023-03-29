@@ -1,0 +1,20 @@
+---
+title: "Поиск"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, message=FALSE, warning=FALSE, echo = FALSE}
+library(tidyverse)
+map_dfr(list.files("texts", full.names = TRUE), function(i){
+  readxl::read_xlsx(i) %>% 
+    mutate(token_id = as.character(token_id),
+           term_id = as.character(term_id))
+}) %>% 
+  distinct(doc_id, token, lemma, upos, feats, meaning) %>% 
+  DT::datatable(filter = 'top', 
+                rownames = FALSE,
+                options = list(pageLength = 50, 
+                               autoWidth = TRUE,
+                               dom = 'fltpi'))
+```
